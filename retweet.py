@@ -49,8 +49,8 @@ class RetweetGraph(object):
             return
         self.selected_count += 1
         if retweet:
-            a = int(tweet['retweet']['id'])
-            b = int(tweet['retweeted']['id'])
+            a = int(tweet['retweet']['user']['id'])
+            b = int(tweet['retweeted']['user']['id'])
             self.add_edge(a, b)
         else:
             author = int(tweet['user']['id'])

@@ -79,6 +79,6 @@ if not os.path.isfile(FILE):
 with open('twitter.json', 'r') as f:
     import retweet
     #run(f, retweet.RetweetActivity)
-    #run(f, retweet.RetweetGraph)
-    run(f, RetweetTest)
+    run(f, retweet.RetweetGraph)
+    #run(f, RetweetTest)
 
