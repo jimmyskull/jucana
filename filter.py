@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import os.path
 import sys
 import time
 
 import json
 
 class ExampleProcessor(object):
+    '''Barebone for a processor class'''
     
     def __init__(self, tweet_count):
         '''|tweet_count| is the total number of calls to |tweet()| until
@@ -22,7 +24,7 @@ class ExampleProcessor(object):
         pass
 
 class RetweetTest(object):
-    '''Select only retweets'''
+    '''Test that only count the number of retweets with a specific hashtag'''
     def __init__(self, tweet_count):
         self.count = 0
         self.tweet_count = tweet_count
@@ -34,6 +36,7 @@ class RetweetTest(object):
 
     def done(self):
         ratio = self.count * 100.0 / self.tweet_count
+        print 'Selected {} tweets ({:.1f}%)'.format(self.count, ratio)
 
 class Status(object):
     def __init__(self, total):
@@ -53,6 +56,7 @@ class Status(object):
         self.count = 0
         self.start = time.time()
 
+
 def run(f, Processor):
     print 'Loading input file...'
     lines = f.readlines()
@@ -66,8 +70,15 @@ def run(f, Processor):
         status.update_status()
     print
     processor.done()
-    
+
+FILE = 'twitter.json'
+if not os.path.isfile(FILE):
+    print 'File {} not found.'.format(FILE)
+    exit(1)
+
 with open('twitter.json', 'r') as f:
     import retweet
-    run(f, retweet.RetweetActivity)
+    #run(f, retweet.RetweetActivity)
+    #run(f, retweet.RetweetGraph)
+    run(f, RetweetTest)
 
