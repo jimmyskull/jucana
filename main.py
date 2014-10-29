@@ -31,7 +31,7 @@ class RetweetTest(object):
 
     def tweet(self, json_object):
         tweet = json_object['interaction']['content'].lower()
-        if '#debatenaglobo' in tweet and 'retweet' in json_object['twitter']:
+        if '#debatenaglobo' in tweet and 'retweet' not in json_object['twitter']:
             self.count += 1
 
     def done(self):
@@ -78,7 +78,7 @@ if not os.path.isfile(FILE):
 
 with open('twitter.json', 'r') as f:
     import retweet
-    #run(f, retweet.RetweetActivity)
-    run(f, retweet.RetweetGraph)
+    run(f, retweet.RetweetActivity)
+    #run(f, retweet.RetweetGraph)
     #run(f, RetweetTest)
 

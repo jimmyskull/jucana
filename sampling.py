@@ -49,5 +49,5 @@ g.write_pajek('sampled_graph.net')
 print 'Sampling graph'
 print 'Vertices: {}'.format(len(vertices))
 print 'Edges: {}'.format(len(edges))
-print 'Power law alpha: {}'.format(r.alpha)
+print 'Power law alpha: {} p-value: {}'.format(r.alpha, r.p)
 

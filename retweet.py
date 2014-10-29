@@ -49,8 +49,12 @@ class RetweetGraph(object):
             return
         self.selected_count += 1
         if retweet:
+            # Nodes: User id
             a = int(tweet['retweet']['user']['id'])
             b = int(tweet['retweeted']['user']['id'])
+            # Nodes: Tweet id
+            #a = int(tweet['retweet']['id'])
+            #b = int(tweet['retweeted']['id'])
             self.add_edge(a, b)
         else:
             author = int(tweet['user']['id'])
@@ -99,9 +103,10 @@ class RetweetActivity(object):
         tweet = json_object['twitter']
         retweet = 'text' not in tweet
         if retweet:
+            return
             content = tweet['retweet']['text'].lower()
         else:
-            return
+            #return
             content = tweet['text'].lower()
         if self.hashtag not in content:
             return
